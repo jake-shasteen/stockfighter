@@ -20,8 +20,9 @@ print datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
 bought = 0
 while bought < total:
-  response = requests.post( new_order, data=body )
-  print response
+  response = requests.post( new_order, data=body, headers=headers )
+  bought += response.totalFilled
+  print bought
   time.sleep(5)
 
 print 'END'
